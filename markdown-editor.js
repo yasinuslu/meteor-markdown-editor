@@ -6,6 +6,9 @@ Template.MarkdownEditor.onRendered(function () {
   markdownEditor.ace = null;
   // AceEditor.instance("markdown-editor-ace", );
 
+  // migration
+  var initialText = markdownEditor.get("value") || "";
+
   this.autorun(function (e) {
     markdownEditor.ace = AceEditor.instance("markdown-editor-ace", {
       theme:"monokai",
@@ -14,6 +17,7 @@ Template.MarkdownEditor.onRendered(function () {
     if(markdownEditor.ace.loaded !== undefined){
       e.stop();
       markdownEditor.set("loaded", true);
+      markdownEditor.ace.getSession().setValue(initialText);
       markdownEditor.ace.on("change", function (e) {
         markdownEditor.set("value", markdownEditor.ace.getSession().getValue());
       });
