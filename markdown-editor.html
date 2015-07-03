@@ -1,0 +1,12 @@
+<template name="MarkdownEditor">
+  <div class="markdown-editor">
+    <pre id="markdown-editor-ace">
+
+    </pre>
+    <div class="markdown-preview">
+      {{#markdown}}
+        {{getText}}
+      {{/markdown}}
+    </div>
+  </div>
+</template>
